@@ -10,7 +10,7 @@ import EditInvoice from './components/invoiceComponent/EditInvoice'; // إذا �
 import './index.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { HashRouter } from "react-router-dom";
 
 const store = configureStore({
   reducer: {
@@ -21,14 +21,16 @@ const store = configureStore({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <React.StrictMode>
+      <HashRouter>
         <ToastContainer position="top-right" autoClose={3000} />
-      <Routes>
-        <Route path="/" element={<InvoicesPage />} />
-      
-        <Route path="/invoice/:id" element={<InvoiceDetail />} />
-        <Route path="/edit/:id" element={<EditInvoice />} /> {/* تأكد من توفر هذا المكون */}
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<InvoicesPage />} />
+
+          <Route path="/invoice/:id" element={<InvoiceDetail />} />
+          <Route path="/edit/:id" element={<EditInvoice />} /> {/* تأكد من توفر هذا المكون */}
+        </Routes>
+      </HashRouter>
+    </React.StrictMode>
   </Provider>
 );
